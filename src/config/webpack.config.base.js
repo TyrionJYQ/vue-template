@@ -1,0 +1,47 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+module.exports = {
+  entry: {
+    app: "../index.js"
+  },
+  output: {
+    path: path.resolve("./dist")
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js(x)$/,
+        use: ["babel-loader"]
+      },
+      {
+        test: /\.vue$/,
+        use: ["vue-loader"]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
+        }
+      }
+    ]
+  },
+  resolve: {
+    modules: [path.resolve("node_modules")],
+    extensions: [".js", ".vue", ".json"]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "../src/index.html",
+      filename: "index.html",
+      title: "my project"
+    }),
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
+  ]
+};
