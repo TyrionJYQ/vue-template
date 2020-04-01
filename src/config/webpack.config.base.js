@@ -5,10 +5,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: {
-    app: "../index.js"
+    app: path.resolve(__dirname, '../index.js')
   },
   output: {
-    path: path.resolve("./dist")
+    path: path.resolve("../dist")
   },
   module: {
     rules: [
@@ -37,7 +37,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "../src/index.html",
+      template: path.resolve(__dirname, '../index.html'),
       filename: "index.html",
       title: "my project"
     }),
