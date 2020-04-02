@@ -8,15 +8,17 @@ module.exports = {
     app: path.resolve(__dirname, '../index.js')
   },
   output: {
-    path: path.resolve("../dist")
+    path: path.resolve(__dirname,"../../dist"),
+    filename: '[name].hash.bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.js(x)$/,
-        use: ["babel-loader"]
+        use: ["babel-loader"],
+        exclude: /node_modules/
       },
-      {
+       {
         test: /\.vue$/,
         use: ["vue-loader"]
       },

@@ -18,4 +18,6 @@
 <style lang="stylus" scoped>
 .title
   color: red
+  width:  calc(100% - 100px)
+  display: grid
 </style>

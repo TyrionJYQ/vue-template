@@ -18,9 +18,11 @@ module.exports = smart(base, {
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
           'stylus-loader',
         ]
-      }
+      },
+     
     ]
   },
   devServer: {
