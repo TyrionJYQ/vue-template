@@ -1,15 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
+console.log(process.env.NODE_ENV);
+const isProduction = process.env.NODE_ENV === "production";
+console.log(isProduction);
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, '../index.js')
+    app: path.resolve(__dirname, "../index.js")
   },
   output: {
-    path: path.resolve(__dirname,"../../dist"),
-    filename: '[name].hash.bundle.js'
+    path: path.resolve(__dirname, "../../dist"),
+    filename: "js/[name].hash.bundle.js"
   },
   module: {
     rules: [
@@ -18,16 +20,25 @@ module.exports = {
         use: ["babel-loader"],
         exclude: /node_modules/
       },
-       {
+      {
         test: /\.vue$/,
         use: ["vue-loader"]
       },
+
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: {
-          loader: 'url-loader',
+          loader: "url-loader",
           options: {
-            limit: 8192
+            limit: 8192,
+            outputPath: (url, resourcePath, context) => {
+              console.log(url, resourcePath, context);
+              if (isProduction) {
+                return `images/${url}`;
+              }
+              return `imgs/${url}`
+            },
+            esModule: false
           }
         }
       }
@@ -39,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html'),
+      template: path.resolve(__dirname, "../index.html"),
       filename: "index.html",
       title: "my project"
     }),
