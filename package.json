@@ -1,20 +1,20 @@
 {
   "name": "vue-template",
   "version": "1.0.0",
-  "description": "this is a tempalte for tj-cli",
+  "description":"<%=description%>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./src/config/webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config=./src/config/webpack.config.pro.js"
   },
+  "private": "<%=private%>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TyrionJYQ/vue-template.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "autor": "<%=author%>",
   "bugs": {
     "url": "https://github.com/TyrionJYQ/vue-template/issues"
   },
@@ -43,6 +43,7 @@
     "style-loader": "^1.1.3",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.0.0",
     "vue-loader": "^15.9.1",
     "vue-template-compiler": "^2.6.11",
@@ -59,5 +60,6 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/runtime": "^7.9.2",
     "vue": "^2.6.11"
-  }
+  },
+  "license": "<%=license%>"
 }

@@ -23,7 +23,7 @@ module.exports = smart(base, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      ENV: JSON.stringify("development") //字符串
+      ENV: JSON.stringify("development"), //字符串
     })
   ]
 });

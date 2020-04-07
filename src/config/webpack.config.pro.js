@@ -32,7 +32,38 @@ module.exports = smart(base, {
     ]
   },
   optimization: {
-    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [
+      new TerserJSPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+          compress: {
+            drop_console: true, 
+              drop_debugger: true, 
+              pure_funcs: [
+                'console.log'
+              ]
+          }
+        },
+        extractComments: false,
+      }), 
+      new OptimizeCSSAssetsPlugin({})
+    ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -2,9 +2,9 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-console.log(process.env.NODE_ENV);
-const isProduction = process.env.NODE_ENV === "production";
-console.log(isProduction);
+
+const isDev = process.env.NODE_ENV !== "production";
+
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "../index.js")
@@ -33,7 +33,7 @@ module.exports = {
             limit: 8192,
             outputPath: (url, resourcePath, context) => {
               console.log(url, resourcePath, context);
-              if (isProduction) {
+              if (isDev) {
                 return `images/${url}`;
               }
               return `imgs/${url}`
