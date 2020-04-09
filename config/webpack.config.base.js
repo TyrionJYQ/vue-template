@@ -7,10 +7,10 @@ const isDev = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "../index.js")
+    app: path.resolve(__dirname, "../src/index.js")
   },
   output: {
-    path: path.resolve(__dirname, "../../dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "js/[name].hash.bundle.js"
   },
   module: {
@@ -46,11 +46,14 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve("node_modules")],
-    extensions: [".js", ".vue", ".json"]
+    extensions: [".js", ".vue", ".json"],
+    alias: {
+      '@stylus': path.resolve(__dirname,'../src/stylus')
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "../index.html"),
+      template: path.resolve(__dirname, "../src/index.html"),
       filename: "index.html",
       title: "my project"
     }),

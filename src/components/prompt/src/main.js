@@ -38,7 +38,7 @@ const showPrompt = () => {
 	}
 	instance.action = ''
 	currentPrompt = pQueue.shift()
-	document.body.append(instance.$el)
+  append(instance.$el)
 }
 
 const Prompt = () => new Promise((resolve, reject) => {

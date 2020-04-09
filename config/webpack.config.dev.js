@@ -11,7 +11,7 @@ module.exports = smart(base, {
         use: ["style-loader", "css-loader", "postcss-loader"]
       },
       {
-        test: /\.sty(lus)$/,
+        test: /\.styl(us)?$/,
         use: ["style-loader", "css-loader", "postcss-loader", "stylus-loader"]
       }
     ]
